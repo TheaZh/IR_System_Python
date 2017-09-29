@@ -5,12 +5,12 @@ import numpy as np
 
 class TFIDF:
 
-    def __init__(self, doclist):
-        self.stopwords = ReadStopwords().get_stopwords()
+    def __init__(self, doclist,query_words):
+        self.stopwords = ReadStopwords().get_stopwords(query_words=query_words)
         self.doclist = doclist
 
     def get_matrix(self):
-        vectorizer = CountVectorizer()
+        vectorizer = CountVectorizer(stop_words=self.stopwords)
         #print '1'
         transformer = TfidfTransformer()
         #print '2'

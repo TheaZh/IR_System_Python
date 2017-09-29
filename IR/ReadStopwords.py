@@ -3,12 +3,13 @@ class ReadStopwords:
     def __init__(self):
         self.stopwords = []
 
-    def get_stopwords(self):
+    def get_stopwords(self, query_words):
         f = open("./proj1-stopword.txt", "r")
         lines = f.readlines()
         for line in lines:
             #print line,
-            self.stopwords.append(line.strip('\n'))
+            if line.strip('\n') not in query_words:
+                self.stopwords.append(line.strip('\n'))
         #print self.stopwords
         return self.stopwords
 

@@ -3,22 +3,35 @@ import re
 
 class GoogleSearch:
 
-    def __init__(self):
-        self.API_KEY = "AIzaSyBpMdM3c6XYISNPICI0qEdEECtRo5gemqA"
-        self.ENGINE_KEY = "018258045116810257593:z1fmkqqt_di"
+    def __init__(self,google_api, engine_key):
+        self.API_KEY = google_api
+        self.ENGINE_KEY = engine_key
         self.doc = []
+        self.right = 0
         self.relevant_doc = [] # relevant docs, each list is the content of the doc
         self.non_relevant_doc = [] # non-relevant docs
 
-    def search(self, query):
+    def search(self, query, lowest_precision):
         # query is a string list of query word (eg. ["a", "b", "c"]
         service = build("customsearch", "v1", developerKey=self.API_KEY)
         res = service.cse().list(q=query, cx=self.ENGINE_KEY,).execute()
 
+        print "Parameters:"
+        print "Client Key = ", self.API_KEY
+        print "Engine Key = ", self.ENGINE_KEY
+        print "Query      = ", query
+        print "Precision  = ", lowest_precision
+        print "Google Search Results:"
+        print "======================"
+        index = 1
         for item in res['items']:
-            print 'title: ', item['title']
-            print 'URL: ', item['displayLink']
-            print 'Snippet: ', item['snippet']
+            print 'Result ', index
+            index += 1
+            print '['
+            print ' URL: ', item['displayLink']
+            print ' Title: ', item['title']
+            print ' Summary: ', item['snippet']
+            print ']\n'
 
             # convert to split word list which contains all words in the doc
             tmp = item['title'].lower() + ' ' + item['snippet'].lower()
@@ -26,12 +39,12 @@ class GoogleSearch:
             #self.doc.append(wordlist)
 
             # user enter Y/N to determine whether this is relevant
-            if_relevant = raw_input("Relevant: ").lower()
-            if if_relevant == 'yes':
+            if_relevant = raw_input("Relevant (Y/N)? ").lower()
+            if if_relevant == 'y':
                 self.relevant_doc.append(wordlist)
+                self.right +=1
             else:
                 self.non_relevant_doc.append(wordlist)
-            print '------------------------'
         self.get_all_term()
 
     def get_wordlist(self,word_string):
