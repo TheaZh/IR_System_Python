@@ -39,3 +39,13 @@ Run
    
    \<query> -- your query
    
+Keys
+=======
+1. Google Custom Search API Key
+
+         AIzaSyARFSgO3Kiuu3IOtEL8UwdIbrS7SiB43qo
+         
+2. Google Custom Search Engine ID
+
+         018258045116810257593:z1fmkqqt_di
+   
