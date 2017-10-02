@@ -10,6 +10,16 @@ Group Member
    Qianwen Zheng (qz2271)
    
    Jiajun Zhang (jz)
+   
+Files
+=======
+      --IR 
+         -- Main.py
+         -- GoogleSearch.py
+         -- TFIDF.py
+         -- proj1-stopword.txt
+         -- requirements.txt
+         -- transcript.txt
 
 Run
 ========
