@@ -25,6 +25,9 @@ Run
 ========
 1. Install dependencies
 
+   Navigate to IR folder and install dependencies
+   
+         cd ./IR 
          pip install -r requirements.txt
 
 2. Run 
