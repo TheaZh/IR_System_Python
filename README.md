@@ -2,17 +2,17 @@
 COMS6111 Project1
 
 Group Name
-========
+--------
 Project 1 Group 27
 
 Group Member
-========
+--------
    Qianwen Zheng (qz2271)
    
    Jiajun Zhang (jz)
    
 Files
-=======
+--------
       --IR 
          -- Main.py
          -- GoogleSearch.py
@@ -22,7 +22,7 @@ Files
          -- transcript.txt
 
 Run
-========
+--------
 1. Install dependencies
 
    Navigate to IR folder and install dependencies
@@ -43,7 +43,7 @@ Run
    \<query> -- your query
    
 Keys
-=======
+--------
 1. Google Custom Search API Key
 
          AIzaSyARFSgO3Kiuu3IOtEL8UwdIbrS7SiB43qo
