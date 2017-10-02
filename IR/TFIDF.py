@@ -1,13 +1,20 @@
 from sklearn.feature_extraction.text import TfidfTransformer
 from sklearn.feature_extraction.text import CountVectorizer
-from ReadStopwords import ReadStopwords
-import numpy as np
 
 class TFIDF:
 
     def __init__(self, doclist,query_words):
-        self.stopwords = ReadStopwords().get_stopwords(query_words=query_words)
+        self.stopwords = []
+        self.get_stopwords(query_words=query_words)
         self.doclist = doclist
+
+    def get_stopwords(self, query_words):
+        f = open("./proj1-stopword.txt", "r")
+        lines = f.readlines()
+        for line in lines:
+            #print line,
+            if line.strip('\n') not in query_words:
+                self.stopwords.append(line.strip('\n'))
 
     def get_matrix(self):
         vectorizer = CountVectorizer(stop_words=self.stopwords)
@@ -27,6 +34,7 @@ class TFIDF:
         # weight[i][j] -- the weight of word i in doc j
         return [word, weight]
 
+'''
 if __name__ == "__main__":
     doclist = [["word list is a word anela, nerwoer"],["abc ef"]]
     stopwords = ReadStopwords().get_stopwords()
@@ -37,3 +45,4 @@ if __name__ == "__main__":
     print np.zeros(len(word))
     #print weightmatirx.T
     #print LA.norm(weightmatirx)
+'''
