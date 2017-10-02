@@ -20,13 +20,8 @@ class Main:
         google_search = GoogleSearch(google_api, engine_key)
         google_search.search(self.query, self.lowest_precision)
         self.precision = google_search.right / 10.0
-
-        # all_doc_list : [ relevant_doc  |  non_relevant_doc ]
+        
         all_doc_list = google_search.doc[:]
-        #print "----- get whole doc ------"
-        #for d in all_doc_list:
-        #    print d
-        #print "--------------------------"
             # the first rel_num columns is about relevant doc
         rel_num = len(google_search.relevant_doc)
 
@@ -39,8 +34,6 @@ class Main:
         # sum columns and normolize-- result is a row vector
         rel = np.sum(rel_weight,1)
         norm_rel = np.linalg.norm(rel, 2)
-        #if norm_rel == 0:
-            #norm_rel = 1
         rel = rel / norm_rel
 
         non_rel = np.sum(non_rel_weight, 1)
@@ -64,8 +57,6 @@ class Main:
         self.new_q = self.ALPHA * q_init \
                 + (self.BETA * rel) \
                 - self.GAMMA * non_rel
-        #print "new Q"
-        #print self.new_q
 
     def get_new_query(self):
         # a dictionary : the key is term, and the value is term's new weight
